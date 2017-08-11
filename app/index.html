@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Velkom game</title>
+  <style>
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    html, body, canvas {
+      margin: 0;
+      overflow: hidden;
+    }
+    .sixteen-nine {
+      position: relative;
+      max-height: 900px;
+    }
+    .sixteen-nine:before {
+      display: block;
+      content: "";
+      width: 100%;
+      padding-top: 56.25%;
+    }
+    .sixteen-nine > .content {
+      max-height: 100vh;
+      max-width: 180vh;
+      margin: 0 auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    @media screen and (min-width: 1600px) {
+      .sixteen-nine > .content {
+        max-width: 1600px;
+        max-height: 900px;
+      }
+    }
+    /* popup */
+    .white-popup-block {
+      background: #FFF;
+      padding: 20px 30px;
+      text-align: left;
+      max-width: 650px;
+      margin: 40px auto;
+      position: relative;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+</head>
+<body>
+  <div class="sixteen-nine">
+    <div id="game" class="content"></div>
+  </div>
+  <a href="/" class="game-exit"></a>
+  <a class="get-popup-modal" id="recept-1" href="#recept-1-popup"></a>
+  <div id="recept-1-popup" class="mfp-hide white-popup-block">
+    <h1>Recept 1</h1>
+    <p>
+      Select all red carrot.
+    </p>
+    <p><a class="popup-modal-dismiss" id="recept-1-start" href="#">Dismiss</a></p>
+  </div>
+  <a class="get-popup-modal" id="recept-2" href="#recept-2-popup"></a>
+  <div id="recept-2-popup" class="mfp-hide white-popup-block">
+    <h1>Recept 2</h1>
+    <p>
+      Select all yellow carrot.
+    </p>
+    <p><a class="popup-modal-dismiss"  id="recept-2-start" href="#">Dismiss</a></p>
+  </div>
+  <a class="get-popup-modal" id="recept-3" href="#recept-3-popup"></a>
+  <div id="recept-3-popup" class="mfp-hide white-popup-block">
+    <h1>Recept 3</h1>
+    <p>
+      Select all burgundy carrot.
+    </p>
+    <p><a class="popup-modal-dismiss" id="recept-3-start" href="#">Dismiss</a></p>
+  </div>
+  <a class="get-popup-modal" id="recept-4" href="#recept-4-popup"></a>
+  <div id="recept-4-popup" class="mfp-hide white-popup-block">
+    <h1>Recept 4</h1>
+    <p>
+      Select all blue carrot.
+    </p>
+    <p><a class="popup-modal-dismiss" id="recept-4-start" href="#">Dismiss</a></p>
+  </div>
+  <a class="get-popup-modal" id="recept-5" href="#recept-5-popup"></a>
+  <div id="recept-5-popup" class="mfp-hide white-popup-block">
+    <h1>Recept 5</h1>
+    <p>
+      Select all green carrot.
+    </p>
+    <p><a class="popup-modal-dismiss" id="recept-5-start" href="#">Dismiss</a></p>
+  </div>
+  <a class="get-popup-modal" id="recept-1-complete" href="#recept-1-complete-popup"></a>
+  <div id="recept-1-complete-popup" class="mfp-hide white-popup-block">
+    <h1>Recept 1 completed!</h1>
+    <p>
+      List of ingredients ...
+    </p>
+    <p class="game-over-hide">
+      <a class="popup-modal-dismiss" id="recept-1-next" href="#">Dismiss</a>
+    </p>
+    <p class="game-over-show" style="display:none;">
+      The game is end <a href="/">Exit</a>
+    </p>
+  </div>
+  <a class="get-popup-modal" id="recept-2-complete" href="#recept-2-complete-popup"></a>
+  <div id="recept-2-complete-popup" class="mfp-hide white-popup-block">
+    <h1>Recept 2 completed!</h1>
+    <p>
+      List of ingredients ...
+    </p>
+    <p class="game-over-hide">
+      <a class="popup-modal-dismiss"  id="recept-2-next" href="#">Dismiss</a>
+    </p>
+    <p class="game-over-show" style="display:none;">
+      The game is end <a href="/">Exit</a>
+    </p>
+  </div>
+  <a class="get-popup-modal" id="recept-3-complete" href="#recept-3-complete-popup"></a>
+  <div id="recept-3-complete-popup" class="mfp-hide white-popup-block">
+    <h1>Recept 3 completed!</h1>
+    <p>
+      List of ingredients ...
+    </p>
+    <p class="game-over-hide">
+      <a class="popup-modal-dismiss"  id="recept-3-next" href="#">Dismiss</a>
+    </p>
+    <p class="game-over-show" style="display:none;">
+      The game is end <a href="/">Exit</a>
+    </p>
+  </div>
+  <a class="get-popup-modal" id="recept-4-complete" href="#recept-4-complete-popup"></a>
+  <div id="recept-4-complete-popup" class="mfp-hide white-popup-block">
+    <h1>Recept 4 completed!</h1>
+    <p>
+      List of ingredients ...
+    </p>
+    <p class="game-over-hide">
+      <a class="popup-modal-dismiss" id="recept-4-next" href="#">Dismiss</a>
+    </p>
+    <p class="game-over-show" style="display:none;">
+      The game is end <a href="/">Exit</a>
+    </p>
+  </div>
+  <a class="get-popup-modal" id="recept-5-complete" href="#recept-5-complete-popup"></a>
+  <div id="recept-5-complete-popup" class="mfp-hide white-popup-block">
+    <h1>Recept 5 completed!</h1>
+    <p>
+      List of ingredients ...
+    </p>
+    <p class="game-over-hide">
+      <a class="popup-modal-dismiss" id="recept-5-next" href="#">Dismiss</a>
+    </p>
+    <p class="game-over-show" style="display:none;">
+      The game is end <a href="/">Exit</a>
+    </p>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/immutable/3.8.1/immutable.min.js"></script>
+  <script type="text/javascript">
+    $( document ).on( "recept-complete", function(event, recept) {
+      console.log('Send to server recept complete', recept);
+    });
+    $( document ).on( "scene-complete", function(event, scene) {
+      console.log('Send to server scene complete', scene);
+    });
+    $(function () {
+      $('.get-popup-modal').magnificPopup({
+        type: 'inline',
+        preloader: false,
+        modal: true
+      });
+      $(document).on('click', '.popup-modal-dismiss', function (e) {
+        e.preventDefault();
+        $.magnificPopup.close();
+      });
+    });
+    window.GAME_STORE = {
+      scene: 'scene-1',
+      items: new Immutable.Set([
+        {
+          id: 'scene-1',
+          complete: false,
+          recept: null,
+          recepts: new Immutable.Set([
+            {
+              number: 1,
+              complete: false,
+              id: 'recept-1',
+            }, {
+              number: 2,
+              complete: false,
+              id: 'recept-2'
+            }, {
+              number: 3,
+              complete: false,
+              id: 'recept-3'
+            }, {
+              number: 4,
+              complete: false,
+              id: 'recept-4'
+            }, {
+              number: 5,
+              complete: false,
+              id: 'recept-5'
+            }
+          ])
+        }
+      ])
+    };
+    window.RECEPT_STORE = {
+      items: new Immutable.Set([
+        {
+          id: 'recept-1',
+          items: new Immutable.Set([
+            'bacon', 'item-eggs', 'item-cheese', 'item-tomato', 'item-bow', 'item-pasta', 'item-mushrooms'
+          ]),
+          open: false,
+        }, {
+          id: 'recept-2',
+          items: new Immutable.Set([
+            'bacon', 'item-potato', 'item-bow'
+          ]),
+          open: false,
+        }, {
+          id: 'recept-3',
+          items: new Immutable.Set([
+            'bacon', 'item-eggs', 'item-cheese', 'item-tomato'
+          ]),
+          open: false,
+        }, {
+          id: 'recept-4',
+          items: new Immutable.Set([
+            'bacon', 'item-bread', 'item-cheese', 'item-tomato'
+          ]),
+          open: false,
+        }, {
+          id: 'recept-5',
+          items: new Immutable.Set([
+            'bacon', 'item-pasta', 'item-mushrooms'
+          ]),
+          open: false,
+        }
+      ]),
+    };
+  </script>
+  <script src="game.js"></script>
+</body>
+</html>
